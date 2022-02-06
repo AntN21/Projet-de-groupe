@@ -30,11 +30,9 @@ def tirage(PI):
         s+=PI[i]
         i+=1
     return i
-X=[tirage(loi_uniforme(5)) for i in range(10)]
-print(X)
 
-n=100
-K=5
+n=10
+K=2
 PI=loi_uniforme(K)
 
 def gen(n,K,a,b,PI):
@@ -43,7 +41,9 @@ def gen(n,K,a,b,PI):
     W=W_SSBM(K, a, b)
     for i in range(n):
         for j in range(n):
-            if (i!=j):
+            if (i<j):
                 A[i,j]+=Binomiale(W[X[i],X[j]])
+    A=A+np.transpose(A)
+
     return A
 print(gen(n,K,0.25,0.75,PI))
